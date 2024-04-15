@@ -2,6 +2,7 @@ require 'pry-byebug'
 # class for board of the game mastermind
 class Board
   attr_reader :colours
+  attr_writer :code
 
   def initialize
     @board = []
