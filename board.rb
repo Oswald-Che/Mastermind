@@ -4,20 +4,27 @@ class Board
   attr_reader :colours
 
   def initialize
-    @board = Array.new(10) { Array.new(4) }
+    @board = []
     @colours = ['BLUE', 'YELLOW', 'GREEN', 'BROWN', 'RED', 'PURPLE']
-    @code = 4.times.map { @colours.sample }
-    # @code = ['GREEN', 'BLUE', 'BROWN', 'BLUE']
+    # @code = 4.times.map { @colours.sample }
+    @code = ['GREEN', 'BLUE', 'BROWN', 'BLUE']
     @clue = []
     @key = []
   end
 
   def display
-    @board.each.with_index do |item, i|
+    @board.each_with_index do |item, i|
       next if item.all?(nil)
 
       puts "#{item} #{@key[i]}"
     end
+  end
+
+  def input_guess(guesses)
+    @clue = []
+    generate_clue(guesses)
+    @board.push(guesses)
+    @key.push(@clue)
   end
 
   # generate key in response to player input
@@ -49,7 +56,7 @@ class Board
   end
 
   def win?
-    @key.last.uniq.to_s == 'BLACK' && @key.last.length == 4
+    @key.last.uniq == ['BLACK'] && @key.last.length == 4
   end
 
 end
