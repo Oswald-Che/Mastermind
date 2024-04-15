@@ -1,6 +1,7 @@
 require 'pry-byebug'
 # class for board of the game mastermind
 class Board
+  attr_reader :colours
 
   def initialize
     @board = Array.new(10) { Array.new(4) }
@@ -8,13 +9,14 @@ class Board
     @code = 4.times.map { @colours.sample }
     # @code = ['GREEN', 'BLUE', 'BROWN', 'BLUE']
     @clue = []
+    @key = []
   end
 
   def display
     @board.each.with_index do |item, i|
       next if item.all?(nil)
 
-      puts "#{item} #{clue[i]}"
+      puts "#{item} #{@key[i]}"
     end
   end
 
@@ -44,6 +46,10 @@ class Board
 
   def push(guesses, i)
     guesses[i] == @code[i] ? @clue.push('BLACK') : @clue.push('WHITE')
+  end
+
+  def win?
+    @key.last.uniq.to_s == 'BLACK' && @key.last.length == 4
   end
 
 end
