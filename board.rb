@@ -6,7 +6,6 @@ class Board
 
   def initialize
     @board = []
-    @colours = 
     # @code = 4.times.map { @colours.sample }
     @code = ['GREEN', 'BLUE', 'BROWN', 'BLUE']
     @key = []

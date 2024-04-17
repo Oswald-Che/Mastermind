@@ -12,6 +12,7 @@ class Human
       player_input = input
       @board.input_guess(player_input)
       @board.display('human')
+      puts "You have #{9 - i} tries left"
       break if game_end(i)
     end
   end
@@ -26,7 +27,7 @@ class Human
 
   def generate_input
     guess = gets.chomp.upcase
-    unless @board.colours.include?(guess)
+    unless Board.colours.include?(guess)
       puts 'Error guess colour not CORRECT, input proper colour'
       guess = generate_input
     end

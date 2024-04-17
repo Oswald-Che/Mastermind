@@ -5,7 +5,7 @@ class Computer
 
   def initialize
     @board = Board.new
-    @set = @board.colours.repeated_permutation(4).to_a
+    @set = Board.colours.repeated_permutation(4).to_a
   end
 
   def set_code
@@ -39,7 +39,7 @@ class Computer
 
   def generate_input
     guess = gets.chomp.upcase
-    unless @board.colours.include?(guess)
+    unless Board.colours.include?(guess)
       puts 'Error code colour not CORRECT, input proper colour'
       guess = generate_input
     end
@@ -47,6 +47,3 @@ class Computer
   end
 
 end
-
-computer = Computer.new
-computer.play
