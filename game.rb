@@ -10,7 +10,11 @@ class Game
     puts 'Do you want set code or guess the code'
     puts 'select 1 to set code and 2 to guess the code'
     answer = gets.chomp.to_i
-    if answer == 2
+    if answer == 1
+      computer = Computer.new
+      computer.set_code
+      computer.play
+    elsif answer == 2
       Human.new.play
     end
   end

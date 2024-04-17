@@ -1,16 +1,17 @@
-
+require_relative 'board.rb'
+# for player to guess the code randomly selected
 class Human
 
   def initialize
     @board = Board.new
-  end 
+  end
 
   def play
     10.times do |i|
       puts "please input code\n"
       player_input = input
       @board.input_guess(player_input)
-      @board.display
+      @board.display('human')
       break if game_end(i)
     end
   end
